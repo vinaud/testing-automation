@@ -1,0 +1,15 @@
+{
+  "name": "seleniumcucumberintegrationsample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js features/test.feature"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@cucumber/cucumber": "^8.1.2"
+  }
+}
