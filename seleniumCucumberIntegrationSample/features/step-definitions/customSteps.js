@@ -1,7 +1,13 @@
-const  {When, Then } = require("@cucumber/cucumber");
+const  {When, Then, Before, After } = require("@cucumber/cucumber");
 const { expect } = require("chai");
 
-let sum = 0;
+Before(function(){
+    let sum = 0
+})
+
+After(function(){
+    
+})
 
 When('I add {int} and {int}', function (var1, var2) {
   sum = var1 + var2;
