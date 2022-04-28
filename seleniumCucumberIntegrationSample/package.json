@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js features/test.feature"
+    "test": "cucumber-js -f @cucumber/pretty-formatter features/test.feature"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,7 @@
     "@cucumber/cucumber": "^8.1.2"
   },
   "devDependencies": {
+    "@cucumber/pretty-formatter": "^1.0.0-alpha.2",
     "chai": "^4.3.6"
   }
 }
