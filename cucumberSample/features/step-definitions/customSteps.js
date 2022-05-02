@@ -20,3 +20,8 @@ Then('sou direcionado para a página do produto', function () {
     // Write code here that turns the phrase above into concrete actions
     
 });
+
+Then('é exibida a mensagem de produto não encontrado', function () {
+    // Write code here that turns the phrase above into concrete actions
+    
+  });
