@@ -7,7 +7,13 @@
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-        <collectionProp name="Arguments.arguments"/>
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="result" elementType="Argument">
+            <stringProp name="Argument.name">result</stringProp>
+            <stringProp name="Argument.value"></stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
       </elementProp>
       <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
@@ -26,10 +32,10 @@
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
       <hashTree>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Configuração dos dados CSV" enabled="true">
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
           <stringProp name="delimiter">,</stringProp>
           <stringProp name="fileEncoding"></stringProp>
-          <stringProp name="filename">C:/Users/leyen/Desktop/test.xlsx</stringProp>
+          <stringProp name="filename">C:/Users/leyen/Documents/Projetos/testing-automation/JmeterScripts/test.xlsx</stringProp>
           <boolProp name="ignoreFirstLine">false</boolProp>
           <boolProp name="quotedData">false</boolProp>
           <boolProp name="recycle">false</boolProp>
@@ -38,8 +44,38 @@
           <stringProp name="variableNames">username,password,country</stringProp>
         </CSVDataSet>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Registration" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+        <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <boolProp name="resetInterpreter">false</boolProp>
+          <stringProp name="script">String newUsername;
+
+log.info(vars.get(&quot;country&quot;)); 
+log.info(ctx.getThreadNum() + &quot;is the thread number&quot;);
+ prefix = ctx.getThreadNum() + 35;
+
+String country = vars.get(&quot;country&quot;); 
+
+if(country.equals(&quot;china&quot;))
+{
+	newUsername = prefix.toString()+vars.get(&quot;username&quot;)+&quot;china&quot;;	
+}
+else
+{
+	newUsername = prefix.toString()+vars.get(&quot;username&quot;);
+}
+vars.put(&quot;username&quot;,newUsername); 
+log.info(&quot;New username is&quot; +newUsername);
+
+
+
+
+
+</stringProp>
+        </BeanShellPreProcessor>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Register" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="username" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
@@ -64,14 +100,14 @@
               </elementProp>
               <elementProp name="firstName" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">f</stringProp>
+                <stringProp name="Argument.value">cicrano</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">firstName</stringProp>
               </elementProp>
               <elementProp name="lastName" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">l</stringProp>
+                <stringProp name="Argument.value">fulano</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">lastName</stringProp>
@@ -85,21 +121,21 @@
               </elementProp>
               <elementProp name="address2" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">fhfhf</stringProp>
+                <stringProp name="Argument.value">hyd</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">address2</stringProp>
               </elementProp>
               <elementProp name="register.x" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">66</stringProp>
+                <stringProp name="Argument.value">48</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">register.x</stringProp>
               </elementProp>
               <elementProp name="register.y" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">2</stringProp>
+                <stringProp name="Argument.value">7</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">register.y</stringProp>
@@ -168,6 +204,27 @@
           </objProp>
           <stringProp name="filename"></stringProp>
         </ResultCollector>
+        <hashTree/>
+        <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <boolProp name="resetInterpreter">false</boolProp>
+          <stringProp name="script">log.info(prev.getResponseCode().toString());
+
+if(prev.getResponseMessage().contains(&quot;unauthorized&quot;))
+{
+	log.info(&quot;Authentication issue&quot;);
+}
+
+else if (prev.getResponseMessage().contains(&quot;OK&quot;))
+{
+	log.info(&quot;Test Passed&quot;);
+	props.put(&quot;result&quot;,&quot;PASS&quot;);
+	
+	
+}
+</stringProp>
+        </BeanShellPostProcessor>
         <hashTree/>
       </hashTree>
     </hashTree>
