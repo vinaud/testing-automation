@@ -1,27 +1,19 @@
 import signup from '../Pages/SignupPage';
 
 describe('Cadastro', () =>{
-    it('usuário deve se tornar um deliver', () =>{
-       
-        var deliver = {
-            name: 'Papito',
-            cpf: '00000014141',
-            email: 'papito@hotmail.com',
-            whatsapp: '11999999999',
-            address :{
-                postalcode: '04534011',
-                street: 'Rua Joaquim Floriano',
-                number: '1000',
-                details: 'Apt 142',
-                district: 'Itaim Bibi',
-                city_state: 'São Paulo/SP'
-            },
-            delivery_method: 'Moto',
-            cnh: 'cnh-digital.jpg'
-        }
 
+    beforeEach(function(){
+        cy.fixture('deliver').then((d)=>{
+
+            this.deliver = d;
+
+        });
+    });
+
+    it('usuário deve se tornar um deliver', function(){
+       
         signup.go();
-        signup.fillForm(deliver);
+        signup.fillForm(this.deliver.signup);
         signup.submit()
 
         const expectedMessage = 'Recebemos os seus dados. Fique de olho na sua caixa de email, pois e em breve retornamos o contato.';
@@ -29,27 +21,10 @@ describe('Cadastro', () =>{
 
     });
 
-    it('CPF incorreto', () =>{
+    it('CPF incorreto', function(){
        
-        var deliver = {
-            name: 'Papito',
-            cpf: '00000014141AA',
-            email: 'papito@hotmail.com',
-            whatsapp: '11999999999',
-            address :{
-                postalcode: '04534011',
-                street: 'Rua Joaquim Floriano',
-                number: '1000',
-                details: 'Apt 142',
-                district: 'Itaim Bibi',
-                city_state: 'São Paulo/SP'
-            },
-            delivery_method: 'Moto',
-            cnh: 'cnh-digital.jpg'
-        }
-
         signup.go();
-        signup.fillForm(deliver);
+        signup.fillForm(this.deliver.cpf_inv);
         signup.submit();
 
         const expectedMessage = 'Oops! CPF inválido';
