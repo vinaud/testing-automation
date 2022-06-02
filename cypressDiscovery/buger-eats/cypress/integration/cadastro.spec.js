@@ -1,4 +1,4 @@
-import SignupPage from '../Pages/SignupPage';
+import signup from '../Pages/SignupPage';
 
 describe('Cadastro', () =>{
     it('usuário deve se tornar um deliver', () =>{
@@ -19,8 +19,6 @@ describe('Cadastro', () =>{
             delivery_method: 'Moto',
             cnh: 'cnh-digital.jpg'
         }
-
-        var signup = new SignupPage();
 
         signup.go();
         signup.fillForm(deliver);
@@ -50,7 +48,6 @@ describe('Cadastro', () =>{
             cnh: 'cnh-digital.jpg'
         }
 
-        var signup = new SignupPage();
         signup.go();
         signup.fillForm(deliver);
         signup.submit();
