@@ -31,4 +31,15 @@ describe('Signup', () =>{
         signup.alertMessageShouldBe(expectedMessage);
 
     });
+
+    it('incorrect email', function(){
+       
+        signup.go();
+        signup.fillForm(this.deliver.email_inv);
+        signup.submit();
+
+        const expectedMessage = 'Oops! Email com formato inválido.';
+        signup.alertMessageShouldBe(expectedMessage);
+
+    });
 });
