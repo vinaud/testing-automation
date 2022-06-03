@@ -50,4 +50,19 @@ describe('Signup', () =>{
         signup.alertMessageShouldBe(expectedMessage);
 
     });
+
+    it.only('Required fields', function(){
+
+        signup.go();
+        signup.submit();
+
+        signup.alertMessageShouldBe('É necessário informar o nome');
+        signup.alertMessageShouldBe('É necessário informar o CPF');
+        signup.alertMessageShouldBe('É necessário informar o email');
+        signup.alertMessageShouldBe('É necessário informar o CEP');
+        signup.alertMessageShouldBe('É necessário informar o número do endereço');
+        signup.alertMessageShouldBe('Selecione o método de entrega');
+        signup.alertMessageShouldBe('Adicione uma foto da sua CNH');
+
+    });
 });
