@@ -10,13 +10,8 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - name: Directory
-       
-        
       - name: Checkout
         uses: actions/checkout@v2
-       
-      
       - name: 'UI Tests - Chrome'
         uses: cypress-io/github-action@v2
         with:
