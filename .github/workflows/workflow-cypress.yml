@@ -11,14 +11,16 @@ jobs:
       fail-fast: false
     steps:
       - name: Directory
-        working-directory: ./cypressDiscovery/buger-eats
+       
         
       - name: Checkout
         uses: actions/checkout@v2
+       
       
       - name: 'UI Tests - Chrome'
         uses: cypress-io/github-action@v2
         with:
+          working-directory: ./cypressDiscovery/buger-eats
           install-command: yarn install
           wait-on: ${{ secrets.BASE_URL }}
           wait-on-timeout: 120
