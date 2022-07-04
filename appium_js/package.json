@@ -1,0 +1,21 @@
+{
+  "name": "appium_js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@wdio/cli": "^7.20.5"
+  },
+  "devDependencies": {
+    "@wdio/local-runner": "^7.20.5",
+    "@wdio/mocha-framework": "^7.20.3",
+    "@wdio/selenium-standalone-service": "^7.20.3",
+    "@wdio/spec-reporter": "^7.20.3"
+  }
+}
