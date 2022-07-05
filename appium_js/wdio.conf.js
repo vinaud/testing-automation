@@ -1,3 +1,5 @@
+let {join} = require('path');
+
 exports.config = {
     //
     // ====================
@@ -56,7 +58,7 @@ exports.config = {
     
        platformName: 'Android',
        'appium:deviceName': 'Pixel 2',
-       'appium:app': 'C:/Users/leyen/Documents/Projetos/ApiDemos-debug.apk'
+       'appium:app': join(process.cwd(),'./ApiDemos-debug.apk')
     }],
     //
     // ===================
