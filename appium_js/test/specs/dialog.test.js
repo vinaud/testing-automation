@@ -1,4 +1,5 @@
 const dialog = require('../pageobjects/dialog.page');
+const { expect } = require('chai');
 
 describe('Dialog -', function(){
     it('Verify that the text entry dialog username & passowrd are editable', function(){
@@ -10,8 +11,11 @@ describe('Dialog -', function(){
         dialog.passwordField.clearValue();
         dialog.passwordField.addValue('pwd123');
 
-        let text = dialog.userNameField.getText();
-        console.log(text);
+        dialog.userNameField.getText().then((text)=>{
+            console.log(text);
+            expect(text).equal('TestUser');
+        });
+        
 
         dialog.dialogOkBtn.click();
     });
