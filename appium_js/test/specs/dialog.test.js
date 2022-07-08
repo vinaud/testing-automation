@@ -19,4 +19,19 @@ describe('Dialog -', function(){
 
         dialog.dialogOkBtn.click();
     });
-});
+    
+    it('Verify that the app adjusts when orientantion is switched', function(){
+        console.log(driver.getOrientation());
+        driver.setOrientation('LANDSCAPE');
+        driver.pause(1000);
+        driver.saveScreenshot('./screenshots/landscape.jpg');
+
+        dialog.appBtn.click();
+        driver.setOrientation('PORTRAIT');
+        driver.back();
+        driver.saveScreenshot('./screenshots/portrait.jpg');
+
+        console.log(driver.getOrientation());
+    });
+
+})
