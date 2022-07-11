@@ -34,4 +34,22 @@ describe('Dialog -', function(){
         console.log(driver.getOrientation());
     });
 
+    it('Verify the repeat alarm options selected', () =>{
+        let isChecked, text;
+
+        dialog.appBtn.click();
+        dialog.alertDialogBtn.click();
+
+        dialog.repeatAlarmBtn();
+        text = dialog.weekdayChecbox(0).getText();
+        expect(text).to.eql('Every Monday');
+
+        isChecked = dialog.weekdayChecbox(0).getAttribute('checked');
+        expect(isChecked).to.eq('false');
+
+        dialog.weekdayChecbox().click();
+        isChecked = dialog.weekdayChecbox(0).getAttribute('checked');
+        expect(isChecked).to.eq('true');
+    })
+
 })

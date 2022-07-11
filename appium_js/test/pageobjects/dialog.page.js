@@ -8,6 +8,11 @@ class Dialog{
 
     get dialogOkBtn() { return $('//android.widget.Button[@resource-id="android:id/button1"]'); }
     get dialogCancelBtn() { return $('//android.widget.Button[@resource-id="android:id/button2"]'); }
+    get repeatAlarmBtn() { return $('//android.widget.Button[@content-desc="Repeat alarm"]');}
+
+    weekdayChecbox(index){
+        return $(`//android.widget.CheckedTextView[@index="${index}"]`);
+    }
     
 }
 
