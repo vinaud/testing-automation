@@ -1,6 +1,7 @@
 ***Settings***
-Library     SeleniumLibrary
-
+Resource            base.robot
+Test Setup          Nova Sessão
+Test Teardown       Encerra Sessão
 
 ***Test Cases***
 
