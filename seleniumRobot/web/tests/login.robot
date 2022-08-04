@@ -7,31 +7,42 @@ Test Teardown       Encerra Sessão
 ***Test Cases***
 Login com sucesso
     Go To           ${url}/login
-    Input Text      css:input[name=nickname]        papitorocks
-    Input Text      css:input[name=password]        pwd123
-    Click Element   xpath://button[text()='Login']
+    Login With      papitorocks  pwd123
 
-    Page Should Contain     Olá Papito, bem-vindo ao Orkut
+    Should See Logged User  Papito
 
 
 Senha inválida
     [tags]          login_error
 
     Go To           ${url}/login
-    Input Text      css:input[name=nickname]        papitorocks
-    Input Text      css:input[name=password]        123456
-    Click Element   xpath://button[text()='Login']
+    Login With      papitorocks  123456
 
-    ${message}=             Get WebELement      id:flash
-    Should Contain          ${message.text}     Oops! nickname e/ou senha incorretos :(
+    Should Contain Login Alert          Oops! nickname e/ou senha incorretos :(
 
 Usuário não existe
     [tags]          login_error
 
     Go To           ${url}/login
-    Input Text      css:input[name=nickname]        ironman
-    Input Text      css:input[name=password]        pwd123
+    Login With      ironman  pwd123
+
+    Should Contain Login Alert          Oops! nickname e/ou senha incorretos :(
+
+***Keywords***
+Login With
+    [Arguments]     ${username }       ${password}
+
+    Input Text      css:input[name=nickname]        ${username}
+    Input Text      css:input[name=password]        ${password}
     Click Element   xpath://button[text()='Login']
 
+Should Contain Login Alert
+    [arguments]             ${expect_message}
+
     ${message}=             Get WebELement      id:flash
-    Should Contain          ${message.text}     Oops! nickname e/ou senha incorretos :(
+    Should Contain          ${message.text}     ${expect_message}
+
+Should See Logged User 
+    [arguments]         ${fullname}
+    
+    Page Should Contain     Olá ${fullname}, bem-vindo ao Orkut
