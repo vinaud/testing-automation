@@ -13,7 +13,16 @@ class SignupPage {
         cy.get('input[name="whatsapp"]').type(deliver.whatsapp);
 
         cy.get('input[name="postalcode"]').type(deliver.address.postalcode);
-        cy.get('input[type=button][value="Buscar CEP"]').click();
+
+        cy.fixture('mockcep').then(function(mockcep){
+            cy.intercept('GET', 'https://viacep.com.br/ws/**', {
+                status: 200,
+                body: mockcep
+            }).as('mockCep');
+
+            cy.get('input[type=button][value="Buscar CEP"]').click();
+            cy.wait('@mockCep');
+        });
 
         cy.get('input[name="address-number"]').type(deliver.address.number);
         cy.get('input[name="address-details"]').type(deliver.address.details);
