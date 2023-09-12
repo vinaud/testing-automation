@@ -110,3 +110,6 @@ dist
 #Robot Logs
 *.html
 *.xml
+
+#Java jar
+*.jar
