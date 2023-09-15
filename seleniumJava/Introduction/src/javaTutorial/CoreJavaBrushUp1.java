@@ -1,5 +1,7 @@
 package javaTutorial;
 
+import java.util.ArrayList;
+
 public class CoreJavaBrushUp1 {
 
 	public static void main(String[] args) {
@@ -26,6 +28,16 @@ public class CoreJavaBrushUp1 {
 		for(String s: arr3) {
 			System.out.println(s);
 		}
+		
+		ArrayList<String> a  = new ArrayList<String>(); 
+		a.add("java");
+		a.add("selenium");
+		a.add("array");
+		for(String var :a) {
+			System.out.println(var);
+		}
+		
+		System.out.println(a.contains("selenium"));
 	}
 
 }
