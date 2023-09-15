@@ -38,6 +38,8 @@ public class CoreJavaBrushUp1 {
 		}
 		
 		System.out.println(a.contains("selenium"));
+		
+		System.out.println("*****************");
 	}
 
 }
