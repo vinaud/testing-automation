@@ -14,10 +14,11 @@ public class Locators2 {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		
 		String name = "rahul";
+		String password = getPassword(driver);
 		
 		driver.get("https://rahulshettyacademy.com/locatorspractice/");
 		driver.findElement(By.id("inputUsername")).sendKeys(name);
-		driver.findElement(By.name("inputPassword")).sendKeys("rahulshettyacademy");
+		driver.findElement(By.name("inputPassword")).sendKeys(password);
 		driver.findElement(By.className("signInBtn")).click();
 		
 		try {
@@ -34,5 +35,22 @@ public class Locators2 {
 		driver.close();
 		
 		
+	}
+	
+	public static String getPassword(WebDriver driver) {
+		driver.get("https://rahulshettyacademy.com/locatorspractice/");
+		driver.findElement(By.linkText("Forgot your password?")).click();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.cssSelector(".reset-pwd-btn")).click();
+		String passwordText = driver.findElement(By.cssSelector("form p")).getText();
+	    String[] passwordArray = passwordText.split("'");
+	    String password = passwordArray[1].split("'")[0];
+	    return password;
 	}
 }
