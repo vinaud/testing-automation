@@ -14,6 +14,7 @@ public class Locators3 {
 		
 		driver.get("https://rahulshettyacademy.com/AutomationPractice/");
 		driver.findElement(By.xpath("//header/div/button[1]/following-sibling::button[1]")).click();
+		driver.findElement(By.xpath("//header/div/button[1]/parent::div/button[2]")).click();
 
 	}
 
