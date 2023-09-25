@@ -18,6 +18,21 @@ public class StaticDropDown {
 		System.out.println(dropdown.getFirstSelectedOption().getText());
 		dropdown.selectByVisibleText("AED");
 		System.out.println(dropdown.getFirstSelectedOption().getText());
+		
+		
+		driver.findElement(By.id("divpaxinfo")).click();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(int i = 0; i< 3; i++) {
+		driver.findElement(By.id("hrefIncAdt")).click();
+		}
+		driver.findElement(By.id("btnclosepaxoption")).click();
+		
+		System.out.print(driver.findElement(By.id("divpaxinfo")).getText());
 		;
 
 	}
