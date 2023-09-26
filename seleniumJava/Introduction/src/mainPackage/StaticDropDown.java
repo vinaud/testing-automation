@@ -33,7 +33,17 @@ public class StaticDropDown {
 		driver.findElement(By.id("btnclosepaxoption")).click();
 		
 		System.out.print(driver.findElement(By.id("divpaxinfo")).getText());
-		;
+		
+		driver.findElement(By.id("ctl00_mainContent_ddl_originStation1_CTXT")).click();
+		driver.findElement(By.xpath("//a[@value='BLR']")).click();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.findElement(By.xpath("(//a[@value='MAA'])[2]")).click();
+		
 
 	}
 
